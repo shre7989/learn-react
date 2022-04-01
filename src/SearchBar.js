@@ -1,11 +1,10 @@
 function SearchBar(props) {
-  const list = props.data;
-  const dynamicSearch = function (event) {
-    let searchText = event.target.value;
+  let list = props.data;
 
+  const dynamicSearch = function (searchText) {
     props.changeList(
       list.filter((el) =>
-        searchText.toLowerCase().includes(el.Category.toLowerCase())
+        el.Category.toLowerCase().includes(searchText.toLowerCase())
       )
     );
   };
@@ -17,7 +16,7 @@ function SearchBar(props) {
         placeholder="search"
         name="search"
         onChange={(event) => {
-          dynamicSearch(event);
+          dynamicSearch(event.target.value);
         }}
       ></input>
     </div>
